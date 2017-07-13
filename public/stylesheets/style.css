@@ -1,0 +1,129 @@
+body {
+  background-image: url("../ufo-transparent.png"), url("../stars2.jpg");
+  /*background-size: ;*/
+  background-repeat: no-repeat, repeat;
+  background-attachment: fixed, fixed;
+  background-size:130px 130px,  auto;
+  background-position: top right, center;
+  font-family: 'Kurale', serif;
+  color: white;
+}
+
+
+/*flex grid for cards*/
+.flex-grid {
+   display: -webkit-flex;
+   display: flex;
+   align-content: space-around;
+   -webkit-flex-direction: row;
+   flex-flow: row wrap;
+   -webkit-justify-content: flex-start;
+   justify-content: flex-start;
+}
+
+
+/*header with content*/
+#header {
+    width : 70%;
+    display: flex;
+    align-items: center;
+    flex-flow: column;
+    justify-content: center space-between;
+    color: black;
+    background-color: #7ea6e5;
+    position: fixed;
+    top: 0;
+    border-radius: 0px 0px 10px 10px;
+}
+/*header to contain above header*/
+#header1 {
+    width : 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center space-between;
+    position: fixed;
+    top: 0;
+}
+
+#mainflex {
+  width : 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center space-between;
+  position: fixed;
+
+}
+
+img {
+/*    display: inline;*/
+    width: 100%;
+    border-radius: 10px 10px 0px 0px;
+   /* height: 75px;*/
+}
+
+
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    max-width: 300px;
+    margin: auto;
+    text-align: center;
+    word-wrap: normal;
+    background-color: #7ea6e5;
+    border-radius: 10px;
+}
+
+.container {
+    padding: 0 16px;
+}
+
+.font1 {
+    font-size: 24px;
+    font-weight: bold;
+}
+.font2 {
+  font-size: 20px;
+}
+
+
+button {
+    border: none;
+    outline: 0;
+    display: inline-block;
+    padding: 8px;
+    color: white;
+    background-color: #000;
+    text-align: center;
+    cursor: pointer;
+    width: 33%;
+    font-family: 'Kurale', serif;
+    font-size: 18px;
+    border-radius: 5px 5px 0px 0px;
+}
+
+button:hover {
+    opacity: 0.7;
+}
+
+/* The navigation bar */
+.navbar {
+    overflow: hidden;
+    background-color: #333;
+    position: fixed; /* Set the navbar to fixed position */
+    top: 0; /* Position the navbar at the top of the page */
+    width: 100%; /* Full width */
+}
+
+/* Links inside the navbar */
+.navbar a {
+    float: left;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+/* Main content */
+.main {
+    margin-top: 30px; /* Add a top margin to avoid content overlay */
+}
