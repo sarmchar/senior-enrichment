@@ -2,50 +2,23 @@ import React, { Component } from 'react';
 import { NavLink, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-export default function Student(props) {
-  var campus = 1;
-    return (
-  <div> <center><h1>Students </h1> </center>
-  <div className="flex-grid">
-
-      <div className="card">
-      <img src="impossible.jpg" />
-      <div className="container">
-        <font className="font1">Impossible</font><br />
-        <font className="font2">{campus === null ? 'No Campus Assigned' : 'Uranus Campus' }</font><br />
-        <button>Edit</button> <button>View</button>
-      </div>
-    </div>
-
-);
-
-}
-
-
-
-function Campus(props) {
-  console.log('PROPS!!!!!', props);
-    return (
-    <div>
-      <center><h2> Campuses </h2></center>
+function Student(props) {
+  return (
       <div className="flex-grid">
-     {props.campuses.map(campus => {
-      return (
-        <div className="card" key={campus.id}>
-      {/*   <NavLink to={`/campus/${campus.id}`} activeClassName="active"> */}
-            <img src={campus.image} />
+      {props.students.map(student => {
+        return (
+          <div className="card grid-item" key={student.id}>
+            <NavLink to={`/student/${student.id}`} >
+            <img src={student.image} />
+            </NavLink>
             <div className="container">
-              <font className="font1">{campus.name}</font><br />
-              <font className="font2">{ props.students.filter(student => student.campusId === campus.id).length } students</font>
-              <br />
+              <font className="font1">{student.name}</font><br />
+              <font className="font3">{student.campusId === null ? 'No Campus Assigned' : props.campuses.filter(campus => campus.id === student.campusId)[0].name + ' Campus' }</font><br />
             </div>
-           { /*</NavLink> */}
-        </div>
-      );
-     })}
-     </div>
-     </div>
-    );
+          </div> );
+      })}
+      </div>
+  );
 }
 
 function mapStateToProps(state) {
@@ -54,3 +27,5 @@ function mapStateToProps(state) {
     students: state.students
   };
 }
+
+export default connect(mapStateToProps)(Student);

@@ -5,12 +5,15 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 
 import campuses from './campuses';
 import students from './students';
-//import name from './name';
+
 import newCampus from './newCampus';
 import newStudent from './newStudent';
 
+import currentCampus from './currentCampus';
+import showCampusEdit from './showCampusEdit';
+
 const reducer = combineReducers({
-  campuses, students, newCampus, newStudent
+  campuses, students, newCampus, newStudent, currentCampus, showCampusEdit
 });
 
 
@@ -28,6 +31,8 @@ export * from './campuses';
 export * from './students';
 export * from './newCampus';
 export * from './newStudent';
+export * from './currentCampus';
+export * from './showCampusEdit';
 
 
 /*FROM ../store.jsx */

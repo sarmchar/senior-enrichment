@@ -21,21 +21,25 @@ body {
    justify-content: flex-start;
 }
 
+/*.grid-item {
+  max-width: 25%;
+  background-color: black;
+}*/
 
 /*header with content*/
 #header {
-    width : 70%;
+    width : 75%;
     display: flex;
     align-items: center;
     flex-flow: column;
-    justify-content: center space-between;
+    justify-content: flex-start space-around;
     color: black;
     background-color: #7ea6e5;
     position: fixed;
     top: 0;
     border-radius: 0px 0px 10px 10px;
 }
-/*header to contain above header*/
+
 #header1 {
     width : 100%;
     display: flex;
@@ -44,14 +48,21 @@ body {
     position: fixed;
     top: 0;
 }
+/*header to contain above header*/
+/*#header1 {
+    width : 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center space-between;
+    position: fixed;
+    top: 0;
+}*/
 
 #mainflex {
   width : 100%;
   display: flex;
   align-items: center;
-  justify-content: center space-between;
-  position: fixed;
-
+  justify-content: center;
 }
 
 img {
@@ -61,19 +72,22 @@ img {
    /* height: 75px;*/
 }
 
-
 .card {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    max-width: 300px;
+    width: 300px;
     margin: auto;
     text-align: center;
     word-wrap: normal;
     background-color: #7ea6e5;
     border-radius: 10px;
 }
+.large-card {
+  width: 400px;
+}
 
 .container {
     padding: 0 16px;
+    align-items: center;
 }
 
 .font1 {
@@ -81,9 +95,12 @@ img {
     font-weight: bold;
 }
 .font2 {
+  font-size: 30px;
+  font-weight: bold;
+}
+.font3 {
   font-size: 20px;
 }
-
 
 button {
     border: none;
@@ -94,36 +111,41 @@ button {
     background-color: #000;
     text-align: center;
     cursor: pointer;
-    width: 33%;
+    width: 19%;
     font-family: 'Kurale', serif;
     font-size: 18px;
-    border-radius: 5px 5px 0px 0px;
+}
+
+
+.wide-button {
+  width: 45%;
+  border-radius: 10px 10px 0px 0px;
+}
+.first-button {
+  border-radius: 10px 0px 0px 0px;
+}
+.last-button {
+  border-radius: 0px 10px 0px 0px;
+}
+.rounded-button {
+    border-radius: 10px 10px 10px 10px;
+}
+.red-button {
+  background-color: red;
 }
 
 button:hover {
     opacity: 0.7;
 }
 
-/* The navigation bar */
-.navbar {
-    overflow: hidden;
-    background-color: #333;
-    position: fixed; /* Set the navbar to fixed position */
-    top: 0; /* Position the navbar at the top of the page */
-    width: 100%; /* Full width */
+a {
+  color: inherit; /* blue colors for links too */
+  text-decoration: inherit; /* no underline */
 }
 
-/* Links inside the navbar */
-.navbar a {
-    float: left;
-    display: block;
-    color: #f2f2f2;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-}
 
 /* Main content */
 .main {
-    margin-top: 30px; /* Add a top margin to avoid content overlay */
+    /*margin-top: 30px;  Add a top margin to avoid content overlay */
+
 }
