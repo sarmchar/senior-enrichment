@@ -1,6 +1,6 @@
+
 body {
   background-image: url("../ufo-transparent.png"), url("../stars2.jpg");
-  /*background-size: ;*/
   background-repeat: no-repeat, repeat;
   background-attachment: fixed, fixed;
   background-size:130px 130px,  auto;
@@ -8,7 +8,6 @@ body {
   font-family: 'Kurale', serif;
   color: white;
 }
-
 
 /*flex grid for cards*/
 .flex-grid {
@@ -20,11 +19,6 @@ body {
    -webkit-justify-content: flex-start;
    justify-content: flex-start;
 }
-
-/*.grid-item {
-  max-width: 25%;
-  background-color: black;
-}*/
 
 /*header with content*/
 #header {
@@ -39,7 +33,7 @@ body {
     top: 0;
     border-radius: 0px 0px 10px 10px;
 }
-
+/*header to contain above header */
 #header1 {
     width : 100%;
     display: flex;
@@ -48,7 +42,7 @@ body {
     position: fixed;
     top: 0;
 }
-
+/*header button flex */
 #mainflex {
   width : 100%;
   display: flex;
@@ -56,13 +50,7 @@ body {
   justify-content: center;
 }
 
-img {
-/*    display: inline;*/
-    width: 100%;
-    border-radius: 10px 10px 0px 0px;
-   /* height: 75px;*/
-}
-
+/* cards */
 .card {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     width: 300px;
@@ -80,11 +68,18 @@ img {
   width: 600px;
 }
 
+/*images */
+img {
+    width: 100%;
+    border-radius: 10px 10px 0px 0px;
+}
+
 .container {
     padding: 0 16px;
     align-items: center;
 }
 
+/*fonts */
 .font1 {
     font-size: 24px;
     font-weight: bold;
@@ -101,6 +96,7 @@ img {
   font-weight: bold;
 }
 
+/* buttons */
 button {
     border: none;
     outline: 0;
@@ -114,12 +110,9 @@ button {
     font-family: 'Kurale', serif;
     font-size: 18px;
 }
-
-ul {
-  list-style-type: none;
-  padding: 0;
-  }
-
+button:hover {
+    opacity: 0.7;
+}
 .wide-button {
   width: 45%;
   border-radius: 10px 10px 0px 0px;
@@ -137,18 +130,15 @@ ul {
   background-color: red;
 }
 
-button:hover {
-    opacity: 0.7;
-}
-
+/* links */
 a {
   color: inherit; /* blue colors for links too */
   text-decoration: inherit; /* no underline */
 }
 
+/* lists */
+ul {
+  list-style-type: none;
+  padding: 0;
+  }
 
-/* Main content */
-.main {
-    /*margin-top: 30px;  Add a top margin to avoid content overlay */
-
-}

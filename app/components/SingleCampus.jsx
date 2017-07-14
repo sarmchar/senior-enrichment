@@ -1,5 +1,4 @@
-import React, { Component } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import React from 'react';
 import { connect } from 'react-redux';
 import EditCampusForm from './EditCampusForm';
 import StudentList from './StudentList';
@@ -39,18 +38,29 @@ class SingleCampus extends React.Component {
     const campus = this.state.campus;
    return (
       <div className="flex-grid">
-        <div className="card large-card grid-item">
+        <div className="card large-card">
+
           <img src={`${campus.image}`} />
+
             <div className="container">
+
             <font className="font1">{campus.name}</font><br />
+
             <font className="font3">{ this.props.students.filter(student => student.campusId === campus.id).length } students</font>
             <br />
-            <button className="wide-button first-button" onClick={this.onStudentToggle} >Students</button>
-            <button className="wide-button last-button" onClick={this.onEditToggle}>Edit</button>
+
+            <button className="wide-button first-button" onClick={this.onStudentToggle} >Students
+            </button>
+            <button className="wide-button last-button" onClick={this.onEditToggle}>
+              Edit
+            </button>
             </div>
         </div>
+
         { this.state.editToggle ? <EditCampusForm campusId= {campus.id} /> :  null}
+
         { this.state.studentToggle ? <StudentList campusId={campus.id} /> :  null}
+
      </div>
     );
   }
@@ -61,14 +71,13 @@ class SingleCampus extends React.Component {
   onStudentToggle () {
     this.setState({studentToggle: !this.state.studentToggle});
   }
-
 }
-  // console.log('SINGLE CAMPUSE PROPS', props);
-  // const { toggleEdit } = props;
+
 
 function mapStateToProps(state) {
   return {
-    students: state.students
+    students: state.students,
+    campuses: state.campuses
   };
 }
 

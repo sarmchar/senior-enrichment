@@ -13,9 +13,11 @@ class StudentList extends React.Component {
   }
 
   render() {
+
     const students = this.props.students;
     const campusId = this.props.campusId;
     const {removeStudent} = this.props;
+
     return (
         <div className="card grid-item" key={campusId}>
             <div className="container">
@@ -26,11 +28,18 @@ class StudentList extends React.Component {
                 .map(student => {return (
                   <div key = {student.id}>
                     <li>
+
                     <NavLink to={`/student/${student.id}`}>
                     <font className="font3">{student.name}</font>
                     </NavLink>
                     &nbsp;&nbsp;
-                    <button onClick={removeStudent} className="wide-button rounded-button" value={student.id}> Remove</button>
+                    <button
+                      onClick={removeStudent}
+                      className="wide-button rounded-button"
+                      value={student.id}>
+                      Remove
+                    </button>
+
                     </li>
                   </div>);
               })
@@ -45,7 +54,8 @@ class StudentList extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    students: state.students
+    students: state.students,
+    campuses: state.campuses
   };
 }
 

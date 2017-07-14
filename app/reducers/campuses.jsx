@@ -7,13 +7,11 @@ const REMOVE = 'REMOVE_CAMPUS';
 
 // Action creators
 export function getCampus(campus) {
-  const action = { type: GET_CAMPUS, campus };
-  return action;
+  return { type: GET_CAMPUS, campus };
 }
 
 export function getCampuses(campuses) {
-  const action = { type: GET_CAMPUSES, campuses };
-  return action;
+  return { type: GET_CAMPUSES, campuses };
 }
 
 export function removeCampus(id){

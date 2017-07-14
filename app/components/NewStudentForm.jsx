@@ -1,17 +1,16 @@
-import React, { Component } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import React from 'react';
 import { connect } from 'react-redux';
 import {writeStudent, postStudent} from '../reducers';
 
 function NewStudentForm(props) {
   const {handleName, handleEmail, handleImage, handleProfile, handleCampus, handleSubmit} = props;
-    return (
+
+  return (
       <div className="flex-grid">
         <div className="card large-card grid-item">
             <div className="container">
               <font className="font1">Add Student</font><br />
               <form onSubmit={handleSubmit}>
-              <div className="form-group">
 
                 Name: <input className="form-control" type="text" name="studentName"placeholder="Name"
                 onChange={handleName} /> <br/>
@@ -31,17 +30,16 @@ function NewStudentForm(props) {
                   })}
                 </select>
 
-              </div>
-              <br/>
-              <div className="form-group">
+              <br />
+
                 <button type="submit" className="wide-button">Submit Student</button>
-              </div>
+
             </form>
             </div>
         </div>
 
      </div>
-    );
+  );
 }
 
 function mapStateToProps(state) {
@@ -52,7 +50,7 @@ function mapStateToProps(state) {
   };
 }
 
-function mapDispatchToProps (dispatch, ownProps){
+function mapDispatchToProps (dispatch){
   return {
     handleName(event) {
       dispatch(writeStudent({name: event.target.value}));

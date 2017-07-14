@@ -28,7 +28,8 @@ export function fetchStudents() {
       .then(students => {
         const action = getStudents(students);
         dispatch(action);
-      });
+      })
+      .catch(err => console.error('get students failed', err));
   };
 }
 
@@ -39,7 +40,8 @@ export function postStudent(student) {
       .then(newStudent => {
         const action = getStudent(newStudent);
         dispatch(action);
-      });
+      })
+      .catch(err => console.error('post student failed', err));
   };
 }
 

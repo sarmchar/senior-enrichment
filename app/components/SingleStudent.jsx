@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import {Link, NavLink, BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import React from 'react';
+import { NavLink} from 'react-router-dom';
 import { connect } from 'react-redux';
 import EditStudentForm from './EditStudentForm';
 import axios from 'axios';
@@ -37,23 +37,31 @@ class SingleStudent extends React.Component {
     return (
       <div className="flex-grid">
         <div className="card grid-item large-card" >
+
             <img src={`${student.image}`} />
+
             <div className="container">
               <font className="font1">{student.name}</font> <br />
 
               <NavLink to={`/campus/${campus.id}`}>
-              <font className="font3">{student.campusId === null ? 'No Campus Assigned' : campus.name + ' Campus'}
-              </font> </NavLink>
-
+                <font className="font3">{student.campusId === null ? 'No Campus Assigned' : campus.name + ' Campus'}
+                </font>
+              </NavLink>
               <br />
+
               <font className="font3">{student.email}</font>
               <br />
+
               <font className="font3">{student.profile}</font>
               <br />
+
               <button className="wide-button" onClick={this.onEditToggle}>Edit</button>
+
             </div>
         </div>
+
         {this.state.editToggle ? <EditStudentForm studentId={student.id} /> : null}
+
      </div>
     );
   }
@@ -64,7 +72,8 @@ class SingleStudent extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    campuses: state.campuses
+    campuses: state.campuses,
+    students: state.students
   };
 }
 

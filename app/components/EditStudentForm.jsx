@@ -3,9 +3,12 @@ import { connect } from 'react-redux';
 import {writeStudent, putStudent, deleteStudent} from '../reducers';
 
 var studentId;
+
 function EditStudentForm(props) {
   studentId = props.studentId;
+
   const {handleName, handleEmail, handleImage, handleProfile, handleCampus, handleSubmit, handleDelete} = props;
+
     return (
       <div className="card large-card grid-item">
         <div className="container">
@@ -13,16 +16,39 @@ function EditStudentForm(props) {
           <form onSubmit={handleSubmit}>
               <div className="form-group">
 
-                Name: <input className="form-control" type="text" name="studentName"placeholder="Name"
-                onChange={handleName} /> <br/>
+                Name: <input
+                className="form-control"
+                type="text"
+                name="studentName"
+                placeholder="Name"
+                onChange={handleName} />
+                <br/>
 
-                Email: <input className="form-control" type="text" name="studentEmail" placeholder="Email"onChange={handleEmail} /> <br/>
+                Email: <input
+                className="form-control"
+                type="text"
+                name="studentEmail"
+                placeholder="Email"
+                onChange={handleEmail} />
+                <br/>
 
-                Image: <input className="form-control" type="text" name="studentImage" placeholder="Image URL" onChange={handleImage} />
+                Image: <input
+                className="form-control"
+                type="text"
+                name="studentImage"
+                placeholder="Image URL"
+                onChange={handleImage} />
 
                 <br /> <br />
 
-                 <textarea className="form-control" type="text" rows="10" cols="20" name="studentProfile" placeholder="Profile Info" onChange={handleProfile} ></textarea>
+                 <textarea
+                 className="form-control"
+                 type="text"
+                 rows="10"
+                 cols="20"
+                 name="studentProfile"
+                 placeholder="Profile Info"
+                 onChange={handleProfile} />
                  <br />
 
                 Campus:
@@ -34,12 +60,15 @@ function EditStudentForm(props) {
                 </select>
 
               </div>
-          <br/>
-          <div className="form-group">
-            <button type="submit" className="wide-button rounded-button">Submit Changes</button>
-          </div>
+              <br/>
+              <button type="submit" className="wide-button rounded-button">Submit Changes
+              </button>
+
         </form>
-        <button className="wide-button red-button" onClick={handleDelete}>  Delete Student </button>
+
+        <button className="wide-button red-button" onClick={handleDelete}>  Delete Student
+         </button>
+
         </div>
       </div>
 
@@ -53,7 +82,7 @@ function mapStateToProps(state) {
   };
 }
 
-function mapDispatchToProps (dispatch, ownProps){
+function mapDispatchToProps (dispatch){
   return {
     handleName(event) {
       dispatch(writeStudent({name: event.target.value}));

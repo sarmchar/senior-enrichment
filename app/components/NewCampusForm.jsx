@@ -1,5 +1,4 @@
-import React, { Component } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import React from 'react';
 import { connect } from 'react-redux';
 import {writeCampus, postCampus} from '../reducers';
 
@@ -7,21 +6,26 @@ function NewCampusForm(props) {
   const {handleNameChange, handleImageChange, handleSubmit} = props;
     return (
       <div className="flex-grid">
-        <div className="card large-card grid-item">
+          <div className="card large-card grid-item">
+
             <div className="container">
-              <font className="font1">Add Campus</font><br />
+
+              <font className="font1">Add Campus</font>
+              <br />
+
               <form onSubmit={handleSubmit}>
-              <div className="form-group">
-                Name: <input className="form-control" type="text" name="campusName" placeholder="Name"onChange={handleNameChange}/> <br/>
+
+                Name: <input className="form-control" type="text" name="campusName" placeholder="Name"onChange={handleNameChange} /> <br/>
+
                 Image: <input className="form-control" type="text" name="campusImage" placeholder="Image URL" onChange={handleImageChange} />
-              </div>
+
               <br/>
-              <div className="form-group">
+
                 <button type="submit" className="wide-button">Submit Changes</button>
-              </div>
-            </form>
+
+              </form>
             </div>
-        </div>
+          </div>
      </div>
     );
 }

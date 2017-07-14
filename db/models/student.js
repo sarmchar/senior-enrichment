@@ -18,4 +18,3 @@ module.exports = db.define('student', {
   profile: Sequelize.TEXT
 });
 
-//add get campus instance method??

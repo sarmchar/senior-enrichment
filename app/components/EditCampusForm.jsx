@@ -1,8 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import {writeCampus, putCampus, writeStudent, putStudent, deleteCampus} from '../reducers';
 
 var campusId;
+// global variable so we can later access campusId passed down in props from SingleCampus in MapDispatchToProps. Had a hard time choosing currentCampus in redux store state, and couldn't think of a better way to do this
 
 function EditCampusForm(props) {
   campusId = props.campusId;
@@ -24,6 +25,7 @@ function EditCampusForm(props) {
 
                 Add Student:
                 <select onChange={handleStudentAdd} name="studentToAdd">
+                <option value=""></option>
                 {students
                   .filter(student => campusId !== student.campusId)
                   .map(student => { return (<option key={student.id} value={student.id}>{student.name}</option>)})}
@@ -31,14 +33,15 @@ function EditCampusForm(props) {
 
               </div>
               <br />
-
-              <div className="form-group">
-                <button type="submit" className="wide-button rounded-button">Submit Changes</button>
-              </div>
+              <button type="submit" className="wide-button rounded-button">
+              Submit Changes
+              </button>
 
             </form>
 
-            <button className="wide-button red-button" onClick={handleDelete}> Delete Campus </button>
+            <button className="wide-button red-button" onClick={handleDelete}>
+            Delete Campus
+            </button>
 
             </div>
         </div>
@@ -47,7 +50,8 @@ function EditCampusForm(props) {
 
 function MapStateToProps(state){
   return {
-    students: state.students
+    students: state.students,
+    campuses: state.campuses
   };
 }
 
@@ -70,7 +74,9 @@ function mapDispatchToProps (dispatch) {
       if (event.target.campusName.value !== '') campus.name = event.target.campusName.value;
       if (event.target.campusImage.value !== '') campus.image = event.target.campusImage.value;
       dispatch(putCampus(campusId, campus));
-      dispatch(putStudent(studentId, {campusId: campusId}));
+      if (studentId !== '') {
+        dispatch(putStudent(studentId, {campusId: campusId})); }
+
     },
     handleDelete(){
       dispatch(deleteCampus(campusId));

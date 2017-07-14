@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import React from 'react';
+import {NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import changeCurrentCampus from '../reducers';
 
@@ -8,13 +8,18 @@ function Campus(props) {
       <div className="flex-grid">
      {props.campuses.map(campus => {
       return (
-        <div className="card grid-item" key={campus.id}>
+        <div className="card" key={campus.id}>
+
        <NavLink to={`/campus/${campus.id}`}  >
             <img src={campus.image} />
         </NavLink>
+
             <div className="container">
-              <font className="font1">{campus.name}</font><br />
-              <font className="font3">{ props.students.filter(student => student.campusId === campus.id).length } students</font>
+              <font className="font1">{campus.name}</font>
+              <br />
+              <font className="font3">
+              { props.students.filter(student => student.campusId === campus.id).length } students
+              </font>
               <br />
             </div>
         </div>

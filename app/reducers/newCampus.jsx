@@ -1,10 +1,12 @@
+// Action types
 const WRITE_CAMPUS = 'WRITE_CAMPUS';
 
+//Action Creator
 export function writeCampus(content) {
-  const action = { type: WRITE_CAMPUS, content };
-  return action;
+  return  { type: WRITE_CAMPUS, content };
 }
 
+//Reducer
 export default function reducer(state = {}, action) {
   switch (action.type) {
     case WRITE_CAMPUS:
