@@ -2,45 +2,77 @@ import React, { Component } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import EditCampusForm from './EditCampusForm';
-import {toggleCampusEdit} from '../reducers';
+import StudentList from './StudentList';
+import axios from 'axios';
 
-function SingleCampus(props) {
-  console.log('SINGLE CAMPUSE PROPS', props);
-  const { toggleEdit } = props;
-    return (
+class SingleCampus extends React.Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      editToggle: false,
+      studentToggle: false,
+      campus: {}
+    };
+    this.onEditToggle = this.onEditToggle.bind(this);
+    this.onStudentToggle = this.onStudentToggle.bind(this);
+  }
+
+  fetchCampusbyId (id) {
+    axios.get(`/api/campus/${id}`)
+    .then(res => res.data)
+    .then(campus => this.setState({campus}));
+  }
+
+  componentDidMount () {
+    const campusId = this.props.match.params.campusId;
+    this.fetchCampusbyId(campusId);
+  }
+
+  componentWillReceiveProps(newProps){
+    const oldProps = this.props.match.params.campusId;
+    if (oldProps !== newProps.match.params.campusId) {
+      this.fetchCampusbyId(newProps.match.params.campusId);
+    }
+  }
+
+  render() {
+    const campus = this.state.campus;
+   return (
       <div className="flex-grid">
         <div className="card large-card grid-item">
+          <img src={`${campus.image}`} />
             <div className="container">
-              <font className="font1"></font><br />
-              <font className="font3"></font>
-              <br />
-              <button className="wide-button first-button" >Students</button>
-              <button className="wide-button last-button" onClick={toggleEdit}>Edit</button>
+            <font className="font1">{campus.name}</font><br />
+            <font className="font3">{ this.props.students.filter(student => student.campusId === campus.id).length } students</font>
+            <br />
+            <button className="wide-button first-button" onClick={this.onStudentToggle} >Students</button>
+            <button className="wide-button last-button" onClick={this.onEditToggle}>Edit</button>
             </div>
         </div>
-         <EditCampusForm />
+        { this.state.editToggle ? <EditCampusForm campus= {campus}/> :  null}
+        { this.state.studentToggle ? <StudentList campusId={campus.id} /> :  null}
      </div>
     );
-}
-function mapDispatchToProps (state, dispatch, ownProps) {
-  return {
-    toggleEdit (event) {
-      console.log('!!!!', event.target.showCampusEdit.value);
-        dispatch({type: TOGGLE_CAMPUS_EDIT});
-    }
-  };
-}
+  }
 
+  onEditToggle (){
+    this.setState({editToggle: !this.state.editToggle});
+  }
+  onStudentToggle () {
+    this.setState({studentToggle: !this.state.studentToggle});
+  }
+
+}
+  // console.log('SINGLE CAMPUSE PROPS', props);
+  // const { toggleEdit } = props;
 
 function mapStateToProps(state) {
   return {
-    students: state.students,
-    showCampusEdit: state.showCampusEdit
+    students: state.students
   };
 }
 
+const mapDispatchToProps = {};
+
+
 export default connect(mapStateToProps, mapDispatchToProps)(SingleCampus);
-
-
-
-

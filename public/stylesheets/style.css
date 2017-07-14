@@ -116,6 +116,10 @@ button {
     font-size: 18px;
 }
 
+ul {
+  list-style-type: none;
+  padding: 0;
+  }
 
 .wide-button {
   width: 45%;

@@ -13,7 +13,7 @@ module.exports = db.define('student', {
   email: Sequelize.STRING,
   image: {
     type: Sequelize.STRING,
-    defaultValue: 'ufo.jpg'
+    defaultValue: '/ufo.jpg'
     },
   profile: Sequelize.TEXT
 });

@@ -41,8 +41,8 @@ export default class Main extends Component {
         <Route exact path="/student" component={Student} />
         <Route exact path="/add-campus" component={NewCampusForm} />
         <Route exact path="/add-student" component={NewStudentForm} />
-        <Route path="/campus/1"component={SingleCampus} />
-        <Route path="/student/1" component={SingleStudent} />
+        <Route path="/campus/:campusId"component={SingleCampus} />
+        <Route path="/student/:studentId" component={SingleStudent} />
 
       </Switch>
 
@@ -50,6 +50,4 @@ export default class Main extends Component {
     </Router>
     );
   }
-
 }
-//<Route component={Home} />

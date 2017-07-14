@@ -1,13 +1,18 @@
-const TOGGLE_CAMPUS_EDIT = 'TOGGLE_CAMPUS_EDIT'
+const TOGGLE_CAMPUS_EDIT = 'TOGGLE_CAMPUS_EDIT';
 
-export function toggleCampusEdit (state) {
-  return !state;
-}
+// function toggleCampusEdit (state) {
+//   return {type: TOGGLE_CAMPUS_EDIT, !state};
+// }
+const toggleEdit = state => ({type: TOGGLE_CAMPUS_EDIT, state});
 
 export default function reducer (state = false, action) {
   switch (action.type) {
     case TOGGLE_CAMPUS_EDIT:
-      return toggleCampusEdit(state);
+      return action.state;
     default: return state;
   }
 }
+
+export const toggleCampusEdit = state => dispatch => {
+  dispatch(toggleEdit(!state));
+};

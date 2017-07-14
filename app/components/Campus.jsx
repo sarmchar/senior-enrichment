@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
+import changeCurrentCampus from '../reducers';
 
 function Campus(props) {
     return (
@@ -30,7 +31,7 @@ function mapStateToProps(state) {
   };
 }
 
-function mapDispatchToProps (dispatch, ownProps){
+function mapDispatchToProps (dispatch){
   return {
     handleClick(event){
       dispatch(changeCurrentCampus(event.target.value));

@@ -17,7 +17,6 @@ export function getStudents(students) {
 
 // thunk creators
 export function fetchStudents() {
-  console.log('fetch students');
   return function thunk(dispatch) {
     return axios.get('/api/student')
       .then(res => res.data)

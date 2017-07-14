@@ -17,7 +17,6 @@ export function getCampuses(campuses) {
 
 // thunk creators
 export function fetchCampuses() {
-  console.log('fetch campuses thunk####');
   return function thunk(dispatch) {
     return axios.get('/api/campus')
       .then(res => res.data)
@@ -30,7 +29,7 @@ export function fetchCampuses() {
 
 export function postCampus(campus) {
   return function thunk(dispatch) {
-    return axios.post('/api/campuses', campus)
+    return axios.post('/api/campus', campus)
       .then(res => res.data)
       .then(newcampus => {
         const action = getCampus(newcampus);
@@ -38,6 +37,12 @@ export function postCampus(campus) {
       });
   };
 }
+
+// export function putCampus(campus) {
+//   return function thunk(dispatch) {
+//     return axios.put('/api/campus/')
+//   }
+// }
 
 // Reducer function, default state = []
 export default function campusesReducer(state = [], action) {

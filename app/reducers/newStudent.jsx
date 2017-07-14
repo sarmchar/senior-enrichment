@@ -4,13 +4,13 @@ const WRITE_STUDENT = 'WRITE_STUDENT';
 
 // ACTION CREATORS
 
-export function writeMessage (content) {
+export function writeStudent (content) {
   const action = { type: WRITE_STUDENT, content };
   return action;
 }
 
 // REDUCER
-export default function reducer (state = '', action) {
+export default function reducer (state = {}, action) {
 
   switch (action.type) {
 

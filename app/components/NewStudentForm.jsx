@@ -1,16 +1,32 @@
 import React, { Component } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
+import {writeStudent, postStudent} from '../reducers';
 
 function NewStudentForm(props) {
-  console.log(props);
+  const {handleName, handleEmail, handleImage, handleProfile, handleCampus, handleSubmit} = props;
     return (
       <div className="flex-grid">
-        <div className="card grid-item">
+        <div className="card large-card grid-item">
             <div className="container">
-              <font className="font1">New Student</font><br />
-              <font className="font3">Form Stuff</font>
-              <br />
+              <font className="font1">Add Student</font><br />
+              <form onSubmit={handleSubmit}>
+              <div className="form-group">
+                Name: <input className="form-control" type="text" name="studentName"placeholder="Name"
+                onChange={handleName} /> <br/>
+                Email: <input className="form-control" type="text" name="studentEmail" placeholder="Email"onChange={handleEmail} /> <br/>
+                Image: <input className="form-control" type="text" name="studentImage" placeholder="Image URL"onChange={handleImage} /> <br/> <br/>
+                 <textarea className="form-control" type="text" rows="10" cols="20" name="studentProfile" placeholder="Profile Info" onChange={handleProfile} ></textarea><br/>
+                Campus: <select onChange={handleCampus}>
+                  <option> Pluto </option>
+                  <option> Venus </option>
+                </select>
+              </div>
+              <br/>
+              <div className="form-group">
+                <button type="submit" className="wide-button">Submit Student</button>
+              </div>
+            </form>
             </div>
         </div>
 
@@ -21,16 +37,40 @@ function NewStudentForm(props) {
 function mapStateToProps(state) {
   return {
     campuses: state.campuses,
-    students: state.students
+    students: state.students,
+    newStudent: state.newStudent
   };
 }
 
-// function mapDispatchToProps (dispatch, ownProps){
-//   return {
-//     handleClick(event){
-//       dispatch(changeCurrentCampus(event.target.value));
-//     }
-//   };
-// }
+function mapDispatchToProps (dispatch, ownProps){
+  return {
+    handleName(event) {
+      dispatch(writeStudent({name: event.target.value}));
+    },
+    handleEmail(event) {
+      dispatch(writeStudent({email: event.target.value}));
+    },
+    handleImage(event) {
+      dispatch(writeStudent({image: event.target.value}));
+    },
+    handleProfile(event) {
+      dispatch(writeStudent({profile: event.target.value}));
+    },
+    handleCampus(event) {
+      console.log('select campus', event.target.value);
+    },
+    handleSubmit(event){
+      event.preventDefault();
+      const student = {
+        name: event.target.studentName.value,
+        email: event.target.studentEmail.value,
+        image: event.target.studentImage.value,
+        profile: event.target.studentProfile.value
+      };
+      if (student.image === '') student.image = '/ufo.jpg';
+      dispatch(postStudent(student));
+    }
+  };
+}
 
-export default connect(mapStateToProps)(NewStudentForm);
+export default connect(mapStateToProps, mapDispatchToProps)(NewStudentForm);

@@ -13,7 +13,7 @@ module.exports = db.define('campus', {
   },
   image: {
     type: Sequelize.STRING,
-    defaultValue: 'planet.png'
+    defaultValue: '/planet.png'
     }
 }, {
 instanceMethods: {
