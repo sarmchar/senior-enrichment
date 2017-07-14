@@ -38,6 +38,14 @@ export function postStudent(student) {
   };
 }
 
+export function putStudent(id, student) {
+  return function thunk(dispatch) {
+    return axios.put(`/api/student/${id}`, student)
+    .then(res => dispatch(getStudent(res.data)))
+    .catch(err => console.error('put failed', err));
+  };
+}
+
 // Reducer function, default state = []
 export default function studentsReducer(state = [], action) {
   switch (action.type) {

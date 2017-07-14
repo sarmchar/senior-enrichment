@@ -1,32 +1,47 @@
 import React, { Component } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
+import {writeStudent, putStudent} from '../reducers';
 
+var studentId;
 function EditStudentForm(props) {
   console.log(props);
+  studentId = props.studentId;
+  const {handleName, handleEmail, handleImage, handleProfile, handleCampus, handleSubmit} = props;
     return (
-        <div className="card large-card grid-item">
-            <div className="container">
-              <font className="font1">Edit Student</font><br />
-              <form>
+      <div className="card large-card grid-item">
+        <div className="container">
+          <font className="font1">Edit Student</font><br />
+          <form onSubmit={handleSubmit}>
               <div className="form-group">
-                Name: <input className="form-control" type="text" name="studentName"placeholder="Name"/> <br/>
-                Email: <input className="form-control" type="text" name="studentEmail"placeholder="Email"/> <br/>
-                Image: <input className="form-control" type="text" name="studentImage"placeholder="Image URL"/> <br/> <br/>
-                 <textarea className="form-control" type="text" rows="10" cols="20" name="studentProfile" placeholder="Profile Info"></textarea><br/>
-                Campus: <select>
-                  <option> Pluto </option>
-                  <option> Venus </option>
+
+                Name: <input className="form-control" type="text" name="studentName"placeholder="Name"
+                onChange={handleName} /> <br/>
+
+                Email: <input className="form-control" type="text" name="studentEmail" placeholder="Email"onChange={handleEmail} /> <br/>
+
+                Image: <input className="form-control" type="text" name="studentImage" placeholder="Image URL"onChange={handleImage} />
+
+                <br/> <br/>
+
+                 <textarea className="form-control" type="text" rows="10" cols="20" name="studentProfile" placeholder="Profile Info" onChange={handleProfile} ></textarea><br/>
+
+                Campus:
+                <select onChange={handleCampus}>
+                  {props.campuses.map(campus => {
+                    return (<option key={campus.id} name={campus.id}>{campus.name}</option>);
+                  })}
                 </select>
+
               </div>
-              <br/>
-              <div className="form-group">
-                <button type="submit" className="wide-button rounded-button">Submit Changes</button>
-              </div>
-            </form>
-            <button className="wide-button red-button"> Delete Student </button>
-            </div>
+          <br/>
+          <div className="form-group">
+            <button type="submit" className="wide-button rounded-button">Submit Changes</button>
+          </div>
+        </form>
+        <button className="wide-button red-button"> Delete Student </button>
         </div>
+      </div>
 
     );
 }
@@ -38,12 +53,34 @@ function mapStateToProps(state) {
   };
 }
 
-// function mapDispatchToProps (dispatch, ownProps){
-//   return {
-//     handleClick(event){
-//       dispatch(changeCurrentCampus(event.target.value));
-//     }
-//   };
-// }
+function mapDispatchToProps (dispatch, ownProps){
+  return {
+    handleName(event) {
+      dispatch(writeStudent({name: event.target.value}));
+    },
+    handleEmail(event) {
+      dispatch(writeStudent({email: event.target.value}));
+    },
+    handleImage(event) {
+      dispatch(writeStudent({image: event.target.value}));
+    },
+    handleProfile(event) {
+      dispatch(writeStudent({profile: event.target.value}));
+    },
+    handleCampus(event) {
+      console.log('select campus', event.target.value);
+    },
+    handleSubmit(event){
+      event.preventDefault();
+      console.log(event.target);
+      const student = {};
+      if (event.target.studentName.value !== '') student.name = event.target.studentName.value;
+      if (event.target.studentEmail.value !== '') student.email = event.target.studentEmail.value;
+      if (event.target.studentImage.value !== '') student.image = event.target.studentImage.value;
+      if (event.target.studentProfile.value !== '') student.profile = event.target.studentProfile.value;
+      dispatch(putStudent(studentId, student));
+    }
+  };
+}
 
-export default connect(mapStateToProps)(EditStudentForm);
+export default connect(mapStateToProps, mapDispatchToProps)(EditStudentForm);

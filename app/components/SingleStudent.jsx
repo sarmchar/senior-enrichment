@@ -47,7 +47,7 @@ class SingleStudent extends React.Component {
               <button className="wide-button" onClick={this.onEditToggle}>Edit</button>
             </div>
         </div>
-        {this.state.editToggle ? <EditStudentForm /> : null}
+        {this.state.editToggle ? <EditStudentForm studentId={student.id} /> : null}
      </div>
     );
   }

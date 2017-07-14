@@ -12,15 +12,25 @@ function NewStudentForm(props) {
               <font className="font1">Add Student</font><br />
               <form onSubmit={handleSubmit}>
               <div className="form-group">
+
                 Name: <input className="form-control" type="text" name="studentName"placeholder="Name"
                 onChange={handleName} /> <br/>
+
                 Email: <input className="form-control" type="text" name="studentEmail" placeholder="Email"onChange={handleEmail} /> <br/>
-                Image: <input className="form-control" type="text" name="studentImage" placeholder="Image URL"onChange={handleImage} /> <br/> <br/>
+
+                Image: <input className="form-control" type="text" name="studentImage" placeholder="Image URL"onChange={handleImage} />
+
+                <br/> <br/>
+
                  <textarea className="form-control" type="text" rows="10" cols="20" name="studentProfile" placeholder="Profile Info" onChange={handleProfile} ></textarea><br/>
-                Campus: <select onChange={handleCampus}>
-                  <option> Pluto </option>
-                  <option> Venus </option>
+
+                Campus:
+                <select onChange={handleCampus}>
+                  {props.campuses.map(campus => {
+                    return (<option key={campus.id} name={campus.id}>{campus.name}</option>);
+                  })}
                 </select>
+
               </div>
               <br/>
               <div className="form-group">
@@ -74,3 +84,5 @@ function mapDispatchToProps (dispatch, ownProps){
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(NewStudentForm);
+
+

@@ -23,26 +23,26 @@ export function fetchCampuses() {
       .then(campuses => {
         const action = getCampuses(campuses);
         dispatch(action);
-      });
+      })
+      .catch(err => console.error('fetch campuses failed', err));
   };
 }
 
 export function postCampus(campus) {
   return function thunk(dispatch) {
     return axios.post('/api/campus', campus)
-      .then(res => res.data)
-      .then(newcampus => {
-        const action = getCampus(newcampus);
-        dispatch(action);
-      });
+      .then(res => dispatch(getCampus(res.data)))
+      .catch(err => console.error('post failed', err));
   };
 }
 
-// export function putCampus(campus) {
-//   return function thunk(dispatch) {
-//     return axios.put('/api/campus/')
-//   }
-// }
+export function putCampus(id, campus) {
+  return function thunk(dispatch) {
+    return axios.put(`/api/campus/${id}`, campus)
+    .then(res => dispatch(getCampus(res.data)))
+    .catch(err => console.error('put failed', err));
+  };
+}
 
 // Reducer function, default state = []
 export default function campusesReducer(state = [], action) {
