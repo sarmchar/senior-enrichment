@@ -1,7 +1,6 @@
-import React, { Component } from 'react';
-import { NavLink, withRouter } from 'react-router-dom';
+import React from 'react';
+import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
-import axios from 'axios';
 
 function Student(props) {
   return (
@@ -14,7 +13,8 @@ function Student(props) {
           </NavLink>
           <div className="container">
             <font className="font1">{student.name}</font><br />
-            <font className="font3">{student.campusId === null ? 'No Campus Assigned' : props.campuses.filter(campus => campus.id === student.campusId)[0].name + ' Campus' }</font><br />
+
+            <font className="font3">{student.campusId === null ? 'No Campus Assigned' :  <NavLink to={`/campus/${student.campusId}`}>{props.campuses.filter(campus => campus.id === student.campusId)[0].name + ' Campus'}</NavLink> }</font><br />
           </div>
         </div> );
     })}

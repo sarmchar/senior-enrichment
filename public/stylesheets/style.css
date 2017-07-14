@@ -48,15 +48,6 @@ body {
     position: fixed;
     top: 0;
 }
-/*header to contain above header*/
-/*#header1 {
-    width : 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center space-between;
-    position: fixed;
-    top: 0;
-}*/
 
 #mainflex {
   width : 100%;
@@ -85,6 +76,9 @@ img {
 .large-card {
   width: 400px;
 }
+.welcome-card {
+  width: 600px;
+}
 
 .container {
     padding: 0 16px;
@@ -101,6 +95,10 @@ img {
 }
 .font3 {
   font-size: 20px;
+}
+.huge-font {
+  font-size: 50px;
+  font-weight: bold;
 }
 
 button {

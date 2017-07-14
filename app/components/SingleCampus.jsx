@@ -49,7 +49,7 @@ class SingleCampus extends React.Component {
             <button className="wide-button last-button" onClick={this.onEditToggle}>Edit</button>
             </div>
         </div>
-        { this.state.editToggle ? <EditCampusForm campus= {campus}/> :  null}
+        { this.state.editToggle ? <EditCampusForm campusId= {campus.id} /> :  null}
         { this.state.studentToggle ? <StudentList campusId={campus.id} /> :  null}
      </div>
     );
@@ -72,7 +72,4 @@ function mapStateToProps(state) {
   };
 }
 
-const mapDispatchToProps = {};
-
-
-export default connect(mapStateToProps, mapDispatchToProps)(SingleCampus);
+export default connect(mapStateToProps)(SingleCampus);

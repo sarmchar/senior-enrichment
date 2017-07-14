@@ -1,13 +1,11 @@
-import React, { Component } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import React from 'react';
 import { connect } from 'react-redux';
-import {writeStudent, putStudent} from '../reducers';
+import {writeStudent, putStudent, deleteStudent} from '../reducers';
 
 var studentId;
 function EditStudentForm(props) {
-  console.log(props);
   studentId = props.studentId;
-  const {handleName, handleEmail, handleImage, handleProfile, handleCampus, handleSubmit} = props;
+  const {handleName, handleEmail, handleImage, handleProfile, handleCampus, handleSubmit, handleDelete} = props;
     return (
       <div className="card large-card grid-item">
         <div className="container">
@@ -20,16 +18,18 @@ function EditStudentForm(props) {
 
                 Email: <input className="form-control" type="text" name="studentEmail" placeholder="Email"onChange={handleEmail} /> <br/>
 
-                Image: <input className="form-control" type="text" name="studentImage" placeholder="Image URL"onChange={handleImage} />
+                Image: <input className="form-control" type="text" name="studentImage" placeholder="Image URL" onChange={handleImage} />
 
-                <br/> <br/>
+                <br /> <br />
 
-                 <textarea className="form-control" type="text" rows="10" cols="20" name="studentProfile" placeholder="Profile Info" onChange={handleProfile} ></textarea><br/>
+                 <textarea className="form-control" type="text" rows="10" cols="20" name="studentProfile" placeholder="Profile Info" onChange={handleProfile} ></textarea>
+                 <br />
 
                 Campus:
-                <select onChange={handleCampus}>
+                <select onChange={handleCampus} name="studentCampus">
+                <option value=""></option>
                   {props.campuses.map(campus => {
-                    return (<option key={campus.id} name={campus.id}>{campus.name}</option>);
+                    return (<option key={campus.id} value={campus.id}>{campus.name}</option>);
                   })}
                 </select>
 
@@ -39,7 +39,7 @@ function EditStudentForm(props) {
             <button type="submit" className="wide-button rounded-button">Submit Changes</button>
           </div>
         </form>
-        <button className="wide-button red-button"> Delete Student </button>
+        <button className="wide-button red-button" onClick={handleDelete}>  Delete Student </button>
         </div>
       </div>
 
@@ -68,17 +68,20 @@ function mapDispatchToProps (dispatch, ownProps){
       dispatch(writeStudent({profile: event.target.value}));
     },
     handleCampus(event) {
-      console.log('select campus', event.target.value);
+      dispatch(writeStudent({campusId: event.target.value}));
     },
     handleSubmit(event){
       event.preventDefault();
-      console.log(event.target);
       const student = {};
       if (event.target.studentName.value !== '') student.name = event.target.studentName.value;
       if (event.target.studentEmail.value !== '') student.email = event.target.studentEmail.value;
       if (event.target.studentImage.value !== '') student.image = event.target.studentImage.value;
       if (event.target.studentProfile.value !== '') student.profile = event.target.studentProfile.value;
+      if (event.target.studentCampus.value !== '') student.campusId = event.target.studentCampus.value;
       dispatch(putStudent(studentId, student));
+    },
+    handleDelete(){
+      dispatch(deleteStudent(studentId));
     }
   };
 }

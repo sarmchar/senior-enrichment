@@ -25,9 +25,9 @@ function NewStudentForm(props) {
                  <textarea className="form-control" type="text" rows="10" cols="20" name="studentProfile" placeholder="Profile Info" onChange={handleProfile} ></textarea><br/>
 
                 Campus:
-                <select onChange={handleCampus}>
+                <select onChange={handleCampus} name="studentCampus">
                   {props.campuses.map(campus => {
-                    return (<option key={campus.id} name={campus.id}>{campus.name}</option>);
+                    return (<option key={campus.id} value={campus.id}>{campus.name}</option>);
                   })}
                 </select>
 
@@ -67,7 +67,7 @@ function mapDispatchToProps (dispatch, ownProps){
       dispatch(writeStudent({profile: event.target.value}));
     },
     handleCampus(event) {
-      console.log('select campus', event.target.value);
+      dispatch(writeStudent({campusId: event.target.value}));
     },
     handleSubmit(event){
       event.preventDefault();
@@ -75,7 +75,8 @@ function mapDispatchToProps (dispatch, ownProps){
         name: event.target.studentName.value,
         email: event.target.studentEmail.value,
         image: event.target.studentImage.value,
-        profile: event.target.studentProfile.value
+        profile: event.target.studentProfile.value,
+        campusId: event.target.studentCampus.value
       };
       if (student.image === '') student.image = '/ufo.jpg';
       dispatch(postStudent(student));

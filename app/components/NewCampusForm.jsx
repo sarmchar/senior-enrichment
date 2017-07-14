@@ -7,7 +7,6 @@ function NewCampusForm(props) {
   const {handleNameChange, handleImageChange, handleSubmit} = props;
     return (
       <div className="flex-grid">
-        <div className="card grid-item">
         <div className="card large-card grid-item">
             <div className="container">
               <font className="font1">Add Campus</font><br />
@@ -23,8 +22,6 @@ function NewCampusForm(props) {
             </form>
             </div>
         </div>
-        </div>
-
      </div>
     );
 }

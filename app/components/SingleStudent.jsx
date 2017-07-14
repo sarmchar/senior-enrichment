@@ -31,18 +31,24 @@ class SingleStudent extends React.Component {
 
   render() {
     const student = this.state.student;
+    let campus = {};
+    if (student.campusId !== null && student.campusId){
+      campus = this.props.campuses.filter(camp => camp.id === student.campusId)[0];}
     return (
       <div className="flex-grid">
         <div className="card grid-item large-card" >
             <img src={`${student.image}`} />
             <div className="container">
-              <font className="font1">{student.name}</font>
+              <font className="font1">{student.name}</font> <br />
+
+              <NavLink to={`/campus/${campus.id}`}>
+              <font className="font3">{student.campusId === null ? 'No Campus Assigned' : campus.name + ' Campus'}
+              </font> </NavLink>
+
               <br />
-              <font className="font3">{student.campusId === null ? 'No Campus Assigned' : this.props.campuses.filter(campus => campus.id === student.campusId)[0] + ' Campus' }</font>
+              <font className="font3">{student.email}</font>
               <br />
-              <font className="font3">Email: {student.email}</font>
-              <br />
-              <font className="font3">Profile: {student.profile}</font>
+              <font className="font3">{student.profile}</font>
               <br />
               <button className="wide-button" onClick={this.onEditToggle}>Edit</button>
             </div>

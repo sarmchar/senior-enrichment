@@ -3,6 +3,7 @@ import axios from 'axios';
 // Action types
 const GET_STUDENT = 'GET_STUDENT';
 const GET_STUDENTS = 'GET_STUDENTS';
+const REMOVE = 'REMOVE_STUDENT';
 
 // Action creators
 export function getStudent(student) {
@@ -13,6 +14,10 @@ export function getStudent(student) {
 export function getStudents(students) {
   const action = { type: GET_STUDENTS, students };
   return action;
+}
+
+export function remove(id) {
+  return { type: REMOVE, id };
 }
 
 // thunk creators
@@ -46,6 +51,14 @@ export function putStudent(id, student) {
   };
 }
 
+export function deleteStudent(id){
+  return function thunk(dispatch) {
+    dispatch(remove(id));
+    return axios.delete(`/api/student/${id}`)
+    .catch(err => console.error('delete student failed', err));
+  }
+}
+
 // Reducer function, default state = []
 export default function studentsReducer(state = [], action) {
   switch (action.type) {
@@ -53,6 +66,8 @@ export default function studentsReducer(state = [], action) {
       return action.students;
     case GET_STUDENT:
       return [...state, action.student];
+    case REMOVE:
+      return state.filter(student => student.id !== action.id);
     default:
       return state;
   }

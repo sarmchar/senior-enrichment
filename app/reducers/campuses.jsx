@@ -3,6 +3,7 @@ import axios from 'axios';
 // Action types
 const GET_CAMPUS = 'GET_CAMPUS';
 const GET_CAMPUSES = 'GET_CAMPUSES';
+const REMOVE = 'REMOVE_CAMPUS';
 
 // Action creators
 export function getCampus(campus) {
@@ -13,6 +14,10 @@ export function getCampus(campus) {
 export function getCampuses(campuses) {
   const action = { type: GET_CAMPUSES, campuses };
   return action;
+}
+
+export function removeCampus(id){
+  return { type: REMOVE, id };
 }
 
 // thunk creators
@@ -44,6 +49,14 @@ export function putCampus(id, campus) {
   };
 }
 
+export function deleteCampus(id){
+  return function thunk(dispatch){
+    dispatch(removeCampus(id));
+    return axios.delete(`/api/campus/${id}`)
+    .catch(err => console.error('delete campus failed', err));
+  };
+}
+
 // Reducer function, default state = []
 export default function campusesReducer(state = [], action) {
   switch (action.type) {
@@ -51,6 +64,8 @@ export default function campusesReducer(state = [], action) {
       return action.campuses;
     case GET_CAMPUS:
       return [...state, action.campus];
+    case REMOVE:
+      return state.filter(campus => campus.id !== action.id);
     default:
       return state;
   }
